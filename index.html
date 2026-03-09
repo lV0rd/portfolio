@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Capsori — Roblox developer. Lua scripting, UI/UX, and gameplay systems." />
+  <title>Capsori — Roblox Developer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Canvas for subtle particles -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect width="24" height="24" rx="5" fill="#111"/>
+          <path d="M6 12h12" stroke="#ff7700" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <h1>Capsori</h1>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#showcase" class="nav-link">Technical Showcase</a>
+        <a href="#tos" class="nav-link">Terms</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <header id="home" class="hero" tabindex="-1">
+      <div class="eyebrow">Roblox | Systems &amp; Gameplay</div>
+      <h2>Creating polished gameplay systems and responsive UI for Roblox experiences</h2>
+      <p class="lead">I'm <strong>Capsori</strong>, a Roblox developer from Tunisia with multiple years of scripting experience. I focus on maintainable systems, smooth multiplayer behaviour, and player-first UX.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="#projects">View Highlighted Work</a>
+        <a class="btn secondary" href="#contact">Get a Quote</a>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-header">
+        <h3 id="about-title">About Me</h3>
+        <p class="lead-mini">Lua scripting • Performance &amp; optimization • Systems design</p>
+      </div>
+
+      <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 0 auto;">
+        I've been part of the Roblox platform for over <span style="color:orange;">8 years</span>, diving deep into its unique ecosystem and community. With more than <span style="color:orange;">6 years of dedicated scripting experience</span>, I specialize in creating scalable, maintainable game systems and responsive UI that enhance player engagement and overall experience.
+      </p>
+
+      <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+        My passion lies in building <span style="color:orange;">robust gameplay mechanics</span>, optimizing <span style="color:orange;">multiplayer performance</span>, and designing <span style="color:orange;">intuitive user interfaces</span> that keep players coming back. Over the years, I've worked on a variety of projects ranging from <span style="color:orange;">competitive multiplayer games</span> to <span style="color:orange;">immersive storytelling experiences</span>, always focusing on clean, efficient code and smooth user interactions.
+      </p>
+
+      <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+        I believe great game development is a blend of <span style="color:orange;">creativity</span> and <span style="color:orange;">technical excellence</span>, and I strive to deliver both. Whether collaborating with teams or working solo, I prioritize clear <span style="color:orange;">communication</span> and <span style="color:orange;">adaptability</span> to meet project goals and exceed expectations.
+      </p>
+
+      <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+        If you're looking for a developer who understands the intricacies of Roblox's engine and can bring your ideas to life with <span style="color:orange;">polish</span> and <span style="color:orange;">precision</span>, I'm here to help.
+      </p>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-header">
+        <h3 id="projects-title">Highlighted Projects</h3>
+        <p class="lead-mini">Selected work emphasizing systems design, and multiplayer reliability.</p>
+      </div>
+
+      <div class="projects grid" role="list">
+
+        <!-- FEATURED: My Biggest Project -->
+        <article class="featured-card" role="listitem" aria-label="My biggest project (featured)">
+          <div class="featured-media" id="featuredMedia">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;background:#000;">
+              Loading trailer...
+            </div>
+          </div>
+          <div class="featured-body">
+            <div>
+              <div class="featured-role">Lead Scripter</div>
+            </div>
+            <h2 class="featured-title">My Biggest Project</h2>
+            <p class="featured-desc">This is the best upcoming project I took part of [Not Published Yet] — it's like a triple-A horror experience. I led scripting as the Lead Scripter and implemented core systems, and polished gameplay mechanics that make the trailer stand out.</p>
+            <div class="featured-cta">
+              <a class="btn" href="#contact">Contact Me</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- FEATURED: Tower Defense -->
+        <article class="featured-card" role="listitem" aria-label="Tower Defense project (featured)">
+          <div class="featured-media" id="featuredMedia2">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;background:#000;">
+              Loading trailer...
+            </div>
+          </div>
+          <div class="featured-body">
+            <div>
+              <div class="featured-role">Scripter</div>
+            </div>
+            <h2 class="featured-title">Tower Defense Project</h2>
+            <p class="featured-desc">An unfinished Tower Defense project I scripted for. While the game was never published due to unforeseen circumstances, I enjoyed contributing to it.</p>
+            <div class="featured-cta">
+              <a class="btn" href="#contact">Contact Me</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Don't Pop The Balloon -->
+        <article class="card" role="listitem" aria-label="Don't Pop The Balloon project">
+          <div class="thumb">
+            <img src="newthumb2NEW.png" alt="Don't Pop The Balloon thumbnail" />
+          </div>
+          <div class="featured-role">Lead Scripter</div>
+          <h4>Don't Pop The Balloon</h4>
+          <p class="desc">Built core turn-based gameplay systems, implemented responsive UI, and optimized server-side logic to keep multiplayer rounds smooth under load.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/76252473316261/Dont-Pop-The-Balloon-REWORK" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Who's Most Likely -->
+        <article class="card" role="listitem" aria-label="Guilty! project">
+          <div class="thumb">
+            <img src="Screenshot 2025-08-10 152326.png" alt="Guilty! thumbnail" />
+          </div>
+          <div class="featured-role">Lead Scripter</div>
+          <h4>Who's most likely...!</h4>
+          <p class="desc">Implemented game rules, scripted turn-based mechanics, and tuned server authority to ensure fair competitive matches and exploit-free gameplay.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/98387502858376/Whos-most-likely" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Wink -->
+        <article class="card" role="listitem" aria-label="Wink project">
+          <div class="thumb">
+            <img src="ChatGPT Image Sep 16, 2025, 02_24_20 PM.png" alt="Wordsy thumbnail" />
+          </div>
+          <div class="featured-role">Solo developer</div>
+          <h4>Wink</h4>
+          <p class="desc">Designed and implemented the full game flow including killing, voting, and other mechanics for a multiplayer Imposter-like game.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/127226614156395/Wink-BETA" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Wordsy -->
+        <article class="card" role="listitem" aria-label="Wordsy project">
+          <div class="thumb">
+            <img src="ChatGPT Image Jul 20, 2025, 06_40_32 PM.png" alt="Wordsy thumbnail" />
+          </div>
+          <div class="featured-role">Solo developer</div>
+          <h4>Wordsy</h4>
+          <p class="desc">Designed and implemented the full game flow including scoring, input validation, and polished UX animations for a multiplayer word puzzle game.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/138900044468302/Wordsy" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Karens Kitchen -->
+        <article class="card" role="listitem" aria-label="Karen Kitchen project">
+          <div class="thumb">
+            <img src="noFilter (1).webp" alt="Karen Kitchen thumbnail" />
+          </div>
+          <div class="featured-role">Scripter</div>
+          <h4>Karens Kitchen</h4>
+          <p class="desc">Designed and implemented some game mechanics and contributed to other scripting stuff.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/9674764386/TIPS-Karens-Kitchen" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Natural Disaster -->
+        <article class="card" role="listitem" aria-label="natural dis project">
+          <div class="thumb">
+            <img src="rblx.png" alt="natural dis thumbnail" />
+          </div>
+          <div class="featured-role">Solo Developer</div>
+          <h4>Natural Disaster</h4>
+          <p class="desc">Handled all the scripting and designed a full enjoyable game loop of a natural survival game.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/12349032148/natural-dis" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <!-- Jetpack Roaming -->
+        <article class="card" role="listitem" aria-label="jetpack project">
+          <div class="thumb">
+            <img src="rblx.png" alt="jetpack thumbnail" />
+          </div>
+          <div class="featured-role">Solo Developer</div>
+          <h4>Jetpack Roaming</h4>
+          <p class="desc">Scripted all Jetpack mechanics and designed a fun little obstacle course doable with the Jetpack.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.roblox.com/games/12956084119/jetpack-remade" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- TECHNICAL SHOWCASE -->
+    <section id="showcase" aria-labelledby="showcase-title">
+      <div class="section-header">
+        <h3 id="showcase-title">Technical Showcase</h3>
+        <p class="lead-mini">Short clips demonstrating systems, tools, and prototypes I built.</p>
+      </div>
+
+      <div class="showcase-wrapper" role="list">
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2023-06-26 23-40-52.mkv" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Rocket launcher system</h4>
+            <p class="card-desc">
+              A functional and customizable rocket weapon with effects and physics.
+              <a href="https://www.roblox.com/games/13849267524/explosive-game" target="_blank" rel="noopener noreferrer">Try it</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2025-09-14 15-17-08.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Train System</h4>
+            <p class="card-desc">Modular train system with fully editable tracks, adjustable speed, and customizable number of wagons. Trains follow curves and junctions smoothly.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2023-07-21 09-40-28.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Remake / Prototype</h4>
+            <p class="card-desc">Early recreation of an existing game (The Mirror by @Egroce) to test mechanics and performance.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2023-09-28 17-49-01.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Star Wars dialogue system</h4>
+            <p class="card-desc">Interactive conversation engine with branching choices inspired by Star Wars.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-01-01 21-29-52.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Music visualizer</h4>
+            <p class="card-desc">Dynamic particle-based visual effects that react to audio playback.
+              <a href="https://www.roblox.com/games/15812513666/Music-visualizer" target="_blank" rel="noopener noreferrer">Try it</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-03-29 00-15-09.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Custom physics demo</h4>
+            <p class="card-desc">Advanced physics simulation implementing real-world motion equations, and a fully custom rigidbody framework.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-07-12 23-53-05.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Among Us - style puzzle (DevForum Tutorial)</h4>
+            <p class="card-desc">Mini-game inspired by Among Us puzzles, built as an educational tutorial.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-07-23 23-53-53.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Level editor prototype</h4>
+            <p class="card-desc">Prototype of a tile-based level editor with save/load functionality.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-08-25 18-06-07.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Custom cloud module</h4>
+            <p class="card-desc">Procedural cloud generation with dynamic lighting and weather transitions.</p>
+          </div>
+        </div>
+
+        <div class="showcase-card" role="listitem">
+          <video controls preload="metadata" playsinline>
+            <source src="2024-09-13 14-38-50.mp4" type="video/mp4" />
+            Your browser cannot play this video.
+          </video>
+          <div class="card-content">
+            <h4>Chunk loading system</h4>
+            <p class="card-desc">Efficient chunk-based terrain loading and unloading for large worlds.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TERMS -->
+    <section id="tos" aria-labelledby="tos-title">
+      <div class="section-header">
+        <h3 id="tos-title">Terms of Service</h3>
+        <p class="lead-mini">Simple and clear terms to keep projects predictable and fair.</p>
+      </div>
+
+      <div style="max-width:840px;margin:0 auto;color:var(--muted);">
+        <ul style="line-height:1.8; padding-left:1rem;">
+          <li><strong>No refunds</strong> after work has started or deliverables have been handed over.</li>
+          <li><strong>Payment</strong> is negotiated directly and depends on project scope and timeline.</li>
+          <li>Clear, written requirements are required before work begins.</li>
+          <li>I reserve the right to decline work that conflicts with my values or expertise.</li>
+          <li>Delivery timelines are estimated per-project and will be included in the agreement.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" aria-labelledby="reviews-title">
+      <div class="section-header">
+        <h3 id="reviews-title">Reviews</h3>
+        <p class="lead-mini">Client feedback and screenshots from completed work.</p>
+      </div>
+
+      <div class="review-card" role="region" aria-label="Client review screenshot">
+        <a class="review-link" href="6zn_review.png" target="_blank" rel="noopener">
+          <img src="6zn_review.png" alt="Client review screenshot" />
+        </a>
+      </div>
+      <p class="lead-mini"></p>
+      <div class="review-card" role="region" aria-label="Client review screenshot">
+        <a class="review-link" href="tin_reivew.png" target="_blank" rel="noopener">
+          <img src="tin_reivew.png" alt="Client review screenshot" />
+        </a>
+      </div>
+      <p class="lead-mini"></p>
+      <div class="review-card" role="region" aria-label="Client review screenshot">
+        <a class="review-link" href="liquid_review.png" target="_blank" rel="noopener">
+          <img src="liquid_review.png" alt="Client review screenshot" />
+        </a>
+      </div>
+      <p class="lead-mini"></p>
+      <div class="review-card" role="region" aria-label="Client review screenshot">
+        <a class="review-link" href="vex_review.png" target="_blank" rel="noopener">
+          <img src="vex_review.png" alt="Client review screenshot" />
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-header">
+        <h3 id="contact-title">Contact</h3>
+        <p class="lead-mini">Available for freelance and team work. Payment and scope negotiated per-project.</p>
+      </div>
+
+      <div class="contact-grid" style="margin-top:0.6rem;">
+        <a href="https://discordapp.com/users/642358401510277132" target="_blank" rel="noopener">
+          <img src="ChatGPT Image Sep 27, 2025, 04_35_09 PM.png" alt="Discord profile" />
+        </a>
+        <a href="https://www.roblox.com/users/391300854/profile" target="_blank" rel="noopener">
+          <img src="ChatGPT_Image_Sep_27__2025__04_34_12_PM-removebg-preview.png" alt="Roblox profile" />
+        </a>
+        <a href="https://devforum.roblox.com/u/capsori/summary" target="_blank" rel="noopener">
+          <img src="roblox_studio_orange_transparent.png" alt="DevForum" />
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <div>&copy; 2025 Capsori — Roblox Developer</div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
