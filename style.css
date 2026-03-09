@@ -18,6 +18,12 @@ header {
     margin-bottom: 40px;
 }
 
+header .bio {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
 .profile-container {
     display: flex;
     align-items: center;
