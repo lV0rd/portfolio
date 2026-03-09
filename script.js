@@ -1,155 +1,63 @@
-const FEATURE_YOUTUBE_URL   = "https://www.youtube.com/watch?v=6HPO9YbsTrY";
-const FEATURE_YOUTUBE_URL_2 = "https://www.youtube.com/watch?v=Lw4wYCMZ3bg";
+// update footer year
+document.getElementById('year').textContent = new Date().getFullYear();
 
-function extractYouTubeID(url) {
-  if (!url || typeof url !== 'string') return null;
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{6,})/,
-    /v=([A-Za-z0-9_-]{6,})/,
-    /youtu\.be\/([A-Za-z0-9_-]{6,})/
-  ];
-  for (const p of patterns) {
-    const m = url.match(p);
-    if (m && m[1]) return m[1];
-  }
-  try {
-    const u = new URL(url);
-    return u.searchParams.get('v');
-  } catch (e) {}
-  return null;
-}
+// replace with your Roblox user ID
+const ROBLOX_USER_ID = "1795023834";
 
-function setupLiteYouTube(containerId, url) {
-  const el = document.getElementById(containerId);
-  if (!el) return;
-  const id = extractYouTubeID(url);
-  if (!id) {
-    el.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;background:#000;">Invalid YouTube URL</div>';
-    return;
-  }
-  el.style.position = "relative";
-  el.style.cursor = "pointer";
-  el.innerHTML = `
-    <img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-    <div style="
-      position:absolute;top:50%;left:50%;
-      transform:translate(-50%,-50%);
-      width:68px;height:48px;
-      background:rgba(0,0,0,0.6);
-      border-radius:14%;
-    ">
-      <div style="
-        position:absolute;left:26px;top:14px;
-        width:0;height:0;
-        border-left:18px solid white;
-        border-top:10px solid transparent;
-        border-bottom:10px solid transparent;
-      "></div>
-    </div>
-  `;
-  el.addEventListener('click', () => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
-    iframe.setAttribute('frameborder', '0');
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.style.width = "100%";
-    iframe.style.height = "100%";
-    el.innerHTML = "";
-    el.appendChild(iframe);
-  });
-}
-
-function initParticles() {
-  const canvas = document.getElementById('bgCanvas');
-  if (!canvas || !canvas.getContext) return;
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resize() {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
-  }
-  addEventListener('resize', resize);
-  resize();
-
-  function createParticles(n = 80) {
-    particles = [];
-    for (let i = 0; i < n; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 2.2 + 0.6,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        alpha: 0.08 + Math.random() * 0.22
-      });
+// placeholder games list
+const games = [
+    {
+        name: "Game One",
+        description: "A fun adventure game I helped build.",
+        image: "https://via.placeholder.com/300x150",
+        link: "#"
+    },
+    {
+        name: "Game Two",
+        description: "Another project showcasing scripting skills.",
+        image: "https://via.placeholder.com/300x150",
+        link: "#"
     }
-  }
+];
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.fillStyle = 'rgba(255,119,0,' + p.alpha + ')';
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+function renderGames() {
+    const container = document.querySelector('.games-grid');
+    container.innerHTML = '';
+    games.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `
+            <img src="${g.image}" alt="${g.name}">
+            <h3>${g.name}</h3>
+            <p>${g.description}</p>
+            <a href="${g.link}" target="_blank">View Game</a>
+        `;
+        container.appendChild(card);
     });
-    requestAnimationFrame(draw);
-  }
-
-  createParticles();
-  draw();
 }
 
-function initNavAndScroll() {
-  const links = document.querySelectorAll('.nav-link');
-  const sections = Array.from(document.querySelectorAll('main section, header.hero'));
+async function fetchProfile() {
+    if (!ROBLOX_USER_ID) return;
+    try {
+        const userResp = await fetch(`https://users.roblox.com/v1/users/${ROBLOX_USER_ID}`);
+        const userData = await userResp.json();
+        const thumbResp = await fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${ROBLOX_USER_ID}&size=150x150&format=Png&isCircular=true`);
+        const thumbData = await thumbResp.json();
+        const avatarUrl = thumbData.data[0]?.imageUrl;
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(ent => {
-      if (ent.isIntersecting) {
-        const id = ent.target.id;
-        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
-      }
-    });
-  }, { root: null, rootMargin: '0px 0px -40% 0px', threshold: 0.22 });
-
-  sections.forEach(s => io.observe(s));
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        setTimeout(() => {
-          try { target.focus({ preventScroll: true }); } catch (e) {}
-        }, 600);
-      }
-    });
-  });
+        const container = document.querySelector('.profile-container');
+        container.innerHTML = `
+            <img src="${avatarUrl}" alt="${userData.name} avatar">
+            <div>
+                <h3><a href="https://www.roblox.com/users/${ROBLOX_USER_ID}/profile" target="_blank">${userData.name}</a></h3>
+                <p>Roblox ID: ${ROBLOX_USER_ID}</p>
+            </div>
+        `;
+    } catch (err) {
+        console.error('Failed to load profile', err);
+    }
 }
 
-function initFadeIn() {
-  const elems = document.querySelectorAll('header.hero, section');
-  elems.forEach((el, i) => setTimeout(() => el.classList.add('visible'), 100 * i));
-}
-
-function init() {
-  setupLiteYouTube('featuredMedia', FEATURE_YOUTUBE_URL);
-  setupLiteYouTube('featuredMedia2', FEATURE_YOUTUBE_URL_2);
-  initParticles();
-  initNavAndScroll();
-  initFadeIn();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
-}
+// initialize page
+renderGames();
+fetchProfile();
