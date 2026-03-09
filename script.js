@@ -20,6 +20,20 @@ const games = [
     }
 ];
 
+// placeholder video demos
+const videos = [
+    {
+        title: "Pathfinding System Demo",
+        description: "Shows the custom pathfinding logic and AI behavior.",
+        embed: "https://www.youtube.com/embed/dQw4w9WgXcQ"
+    },
+    {
+        title: "Inventory & UI",
+        description: "Clean modular inventory system with hotkeys.",
+        embed: "https://www.youtube.com/embed/oHg5SJYRHA0"
+    }
+];
+
 function renderGames() {
     const container = document.querySelector('.games-grid');
     container.innerHTML = '';
@@ -58,6 +72,24 @@ async function fetchProfile() {
     }
 }
 
+function renderVideos() {
+    const container = document.querySelector('.videos-grid');
+    if (!container) return;
+    container.innerHTML = '';
+    videos.forEach(v => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+            <iframe src="${v.embed}" allowfullscreen></iframe>
+            <h3>${v.title}</h3>
+            <p>${v.description}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
 // initialize page
 renderGames();
 fetchProfile();
+renderVideos();
+
