@@ -13,12 +13,12 @@ body {
     padding: 20px;
 }
 
-/* ensure cards and other light elements remain readable */
+/* ensure cards and other light elements remain readable with subtle red tint */
 .game-card,
 header,
 footer,
 .profile-container {
-    background: rgba(255,255,255,0.1);
+    background: rgba(30,0,0,0.6);
 }
 
 header h1,
@@ -26,9 +26,30 @@ header p,
 header .bio,
 footer p,
 .game-card h3,
-.game-card p {
+.game-card p,
+.section-desc {
     color: #fff;
 }
+
+/* links and accents */
+a,
+a:visited {
+    color: #ff4c4c;
+}
+a:hover {
+    color: #ff0000;
+}
+
+/* buttons or card links */
+.game-card a {
+    color: #ff4c4c;
+    text-decoration: none;
+    font-weight: bold;
+}
+.game-card a:hover {
+    color: #ff0000;
+}
+
 
 header {
     text-align: center;
