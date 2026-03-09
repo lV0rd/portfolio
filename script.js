@@ -1,7 +1,7 @@
 // update footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// replace with your Roblox user ID
+// replace with your Roblox user ID (not used anymore since profile removed)
 const ROBLOX_USER_ID = "1795023834";
 
 // placeholder games list
@@ -21,18 +21,7 @@ const games = [
 ];
 
 // placeholder video demos
-const videos = [
-    {
-        title: "Pathfinding System Demo",
-        description: "Shows the custom pathfinding logic and AI behavior.",
-        embed: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-    },
-    {
-        title: "Inventory & UI",
-        description: "Clean modular inventory system with hotkeys.",
-        embed: "https://www.youtube.com/embed/oHg5SJYRHA0"
-    }
-];
+// video data\nconst videos = [\n    {\n        \"title\": \"Pathfinding System Demo\",\n        \"description\": \"Shows the custom pathfinding logic and AI behavior.\",\n        \"src\": \"demos/pathfinding.mp4\"\n    },\n    {\n        \"title\": \"Inventory & UI\",\n        \"description\": \"Clean modular inventory system with hotkeys.\",\n        \"src\": \"demos/inventory.mp4\"\n    }\n];
 
 function renderGames() {
     const container = document.querySelector('.games-grid');
@@ -50,26 +39,9 @@ function renderGames() {
     });
 }
 
+// profile section removed; function retained in case it's needed later
 async function fetchProfile() {
-    if (!ROBLOX_USER_ID) return;
-    try {
-        const userResp = await fetch(`https://users.roblox.com/v1/users/${ROBLOX_USER_ID}`);
-        const userData = await userResp.json();
-        const thumbResp = await fetch(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${ROBLOX_USER_ID}&size=150x150&format=Png&isCircular=true`);
-        const thumbData = await thumbResp.json();
-        const avatarUrl = thumbData.data[0]?.imageUrl;
-
-        const container = document.querySelector('.profile-container');
-        container.innerHTML = `
-            <img src="${avatarUrl}" alt="${userData.name} avatar">
-            <div>
-                <h3><a href="https://www.roblox.com/users/${ROBLOX_USER_ID}/profile" target="_blank">${userData.name}</a></h3>
-                <p>Roblox ID: ${ROBLOX_USER_ID}</p>
-            </div>
-        `;
-    } catch (err) {
-        console.error('Failed to load profile', err);
-    }
+    // function no longer invoked
 }
 
 function renderVideos() {
@@ -80,7 +52,10 @@ function renderVideos() {
         const card = document.createElement('div');
         card.className = 'video-card';
         card.innerHTML = `
-            <iframe src="${v.embed}" allowfullscreen></iframe>
+            <video controls width="100%" height="200">
+                <source src="${v.src}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <h3>${v.title}</h3>
             <p>${v.description}</p>
         `;
@@ -90,6 +65,6 @@ function renderVideos() {
 
 // initialize page
 renderGames();
-fetchProfile();
+// fetchProfile(); // profile removed
 renderVideos();
 

@@ -1,0 +1,12 @@
+[
+    {
+        "title": "Pathfinding System Demo",
+        "description": "Shows the custom pathfinding logic and AI behavior.",
+        "src": "demos/pathfinding.mp4"
+    },
+    {
+        "title": "Inventory & UI",
+        "description": "Clean modular inventory system with hotkeys.",
+        "src": "demos/inventory.mp4"
+    }
+]
