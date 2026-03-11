@@ -21,7 +21,19 @@ const games = [
 ];
 
 // placeholder video demos
-// video data\nconst videos = [\n    {\n        \"title\": \"Pathfinding System Demo\",\n        \"description\": \"Shows the custom pathfinding logic and AI behavior.\",\n        \"src\": \"demos/pathfinding.mp4\"\n    },\n    {\n        \"title\": \"Inventory & UI\",\n        \"description\": \"Clean modular inventory system with hotkeys.\",\n        \"src\": \"demos/inventory.mp4\"\n    }\n];
+// video data
+const videos = [
+    {
+        "title": "Pathfinding System Demo",
+        "description": "Shows the custom pathfinding logic and AI behavior.",
+        "src": "demos/pathfinding.mp4"
+    },
+    {
+        "title": "Inventory & UI",
+        "description": "Clean modular inventory system with hotkeys.",
+        "src": "demos/inventory.mp4"
+    }
+];
 
 function renderGames() {
     const container = document.querySelector('.games-grid');

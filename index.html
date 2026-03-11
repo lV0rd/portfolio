@@ -1,72 +1,569 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tin — Roblox developer. Lua scripting, UI/UX, and gameplay systems." />
+  <title>Tin — Roblox Developer</title>
+
+  <style>
+    :root{
+      --bg-1: #0e0e10;
+      --bg-2: #141416;
+      --card: #19191b;
+      --muted: #a7a7a7;
+      --accent: #ff4c4c;
+      --accent-2: #ff0000;
+      --glass: rgba(20,20,22,0.6);
+      --max-width: 1100px;
+      --radius: 10px;
+      --gap: 1.25rem;
+      --nav-height: 64px;
+    }
+
+    /* Basic resets */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(120deg,var(--bg-1),var(--bg-2));
+      color:#fff;
+      line-height:1.6;
+      scroll-behavior:smooth;
+      padding-top: var(--nav-height);
+    }
+
+    /* No canvas for particles, keep clean */
+
+    /* Navigation */
+    nav{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      height:var(--nav-height);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(10,10,12,0.6), rgba(10,10,12,0.45));
+      z-index:30;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav-inner{
+      width:100%;
+      max-width:var(--max-width);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 1rem;
+      gap:1rem;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      text-decoration:none;
+      color:inherit;
+    }
+    .brand h1{
+      font-size:1.05rem;
+      margin:0;
+      letter-spacing:0.6px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    .nav-links{
+      display:flex;
+      gap:1rem;
+      align-items:center;
+    }
+    .nav-links a{
+      color: #fff;
+      text-decoration:none;
+      font-weight:500;
+      padding:0.5rem 0.8rem;
+      border-radius:6px;
+      opacity:0.9;
+      transition: all .18s ease;
+      font-size:0.95rem;
+    }
+    .nav-links a:hover{ color:var(--accent); background: rgba(255,76,76,0.1); }
+    .nav-links a.active{
+      color:var(--accent);
+      background: rgba(255,76,76,0.1);
+    }
+
+    /* Page layout */
+    main{ max-width: var(--max-width); margin: 0 auto; padding: 2.5rem 1rem 6rem; }
+
+    header.hero{
+      text-align:center;
+      padding:0 0 4rem;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+    }
+    header .eyebrow{ color:var(--muted); font-weight:600; letter-spacing:0.6px; margin-bottom:.5rem }
+    header h2{
+      font-size:2.2rem;
+      margin:0 0 0.5rem 0;
+      line-height:1.1;
+      color:#fff;
+    }
+    header p.lead{ max-width:760px; margin: 0.75rem auto 1.25rem; color: #e9e9e9; font-size:1.05rem }
+    .cta-row{ display:flex; gap:0.75rem; justify-content:center; align-items:center; margin-top:1rem }
+    .btn{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+      padding:0.7rem 1.2rem;
+      border-radius:8px;
+      font-weight:600;
+      text-decoration:none;
+      box-shadow: 0 4px 12px rgba(0,123,255,0.2);
+      transition:transform .14s ease;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid var(--accent);
+      box-shadow:none;
+    }
+    .btn:hover{ transform:translateY(-2px) }
+
+    /* Sections */
+    section{ margin:3rem 0; padding:2rem; border-radius:12px; background: var(--bg-2); opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    section.visible{ opacity:1; transform: translateY(0); }
+    section .section-header{ display:flex; align-items:center; justify-content:center; gap:.75rem; flex-direction:column; margin-bottom:2rem }
+    section h3{ color:var(--accent); margin:0; letter-spacing:.4px; font-size:1.5rem; font-weight:700 }
+    section p.lead-mini{ color:var(--muted); text-align:center; max-width:820px; margin:0.5rem auto 1rem; font-size:1rem }
+
+    /* Projects grid */
+    .projects.grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:2rem;
+      align-items:start;
+    }
+
+    /* Featured card */
+    .featured-card{
+      grid-column: 1 / -1;
+      display:flex;
+      gap:2rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+      border: 1px solid rgba(255,255,255,0.03);
+      padding: 2rem;
+      border-radius:12px;
+      align-items:stretch;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .featured-media{
+      flex: 1 1 60%;
+      min-height: 300px;
+      border-radius:10px;
+      overflow:hidden;
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#999;
+    }
+    .featured-body{
+      flex: 1 1 40%;
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      justify-content:center;
+      padding:1rem 0;
+    }
+    .featured-title{
+      font-size:1.6rem;
+      margin:0;
+      color:#fff;
+    }
+    .featured-role{
+      display:inline-block;
+      padding:0.5rem 1rem;
+      background: rgba(255,76,76,0.08);
+      border:1px solid rgba(255,76,76,0.12);
+      color:var(--accent);
+      border-radius:20px;
+      font-weight:600;
+      font-size:0.9rem;
+      width:fit-content;
+    }
+    .featured-desc{
+      color:#eaeaea;
+      line-height:1.5;
+      font-size:1rem;
+    }
+    .featured-cta{
+      margin-top:1rem;
+    }
+    .featured-cta .btn{
+      width:180px;
+      text-align:center;
+    }
+
+    .featured-card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255,76,76,0.1);
+    }
+
+    /* Regular card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+      border: 1px solid rgba(255,255,255,0.03);
+      padding:1.5rem;
+      border-radius:12px;
+      display:flex;
+      flex-direction:column;
+      min-height: 280px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255,76,76,0.1);
+    }
+    .card .thumb{
+      width:100%;
+      border-radius:8px;
+      overflow:hidden;
+      height: 150px;
+      margin-bottom:1rem;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.25));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#999;
+    }
+    .card .thumb img{ width:100%; height:100%; object-fit:cover; display:block }
+    .card h4{ margin:0 0 .5rem 0; font-size:1.1rem; color:#fff }
+    .card p.desc{ color:#e7e7e7; margin:0 0 1.5rem; flex:1; font-size:0.95rem }
+    .card .actions{ display:flex; gap:.75rem; align-items:center; }
+
+    /* Showcase */
+    .showcase-wrapper{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap:2rem;
+      margin-top:1rem;
+    }
+    .clip{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+      padding:1.5rem;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03);
+      text-align:center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .clip video{ width:100%; height:180px; border-radius:8px; background:#000; display:block; margin-bottom:1rem; object-fit:cover; }
+    .clip h4{ margin:0 0 .5rem 0; font-size:1.1rem; color:#fff; }
+    .clip p{ margin: 0; color:var(--muted); font-size:0.95rem; }
+
+    .clip:hover{
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(255,76,76,0.1);
+    }
+
+    /* Reviews */
+    .review-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
+      padding:2rem;
+      border-radius:12px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.03);
+      max-width:960px;
+      margin: 0 auto;
+    }
+    .review-card img{
+      width:100%;
+      max-width:860px;
+      height:auto;
+      border-radius:10px;
+      display:block;
+      margin: 0 auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    /* Contact */
+    .contact-grid{ display:flex; gap:1.5rem; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:1rem; }
+    .contact-grid a img{ width:60px; height:60px; border-radius:12px; object-fit:cover; display:block; transition:transform .15s ease; }
+    .contact-grid a:hover img{ transform:scale(1.05) }
+
+    footer{
+      text-align:center;
+      color: #bdbdbd;
+      font-size:0.95rem;
+      margin-top:3rem;
+      opacity:.9;
+    }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .projects.grid{ grid-template-columns: 1fr; }
+      .featured-card{ flex-direction:column; }
+      .featured-media{ height: 250px; min-height:200px; }
+    }
+    @media (max-width:600px){
+      header h2{ font-size:1.8rem }
+      .clip video{ height:150px }
+      .card .thumb{ height:130px }
+      main{ padding:1.5rem 1rem }
+      .nav-links{ display:none }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>My Roblox Portfolio</h1>
-        <p class="bio">Professional Roblox scripter with 5+ years of experience. I write scalable, clean, documented, modular code and love solving complex problems in Lua.</p>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect width="24" height="24" rx="5" fill="#111"/>
+          <path d="M6 12h12" stroke="#ff4c4c" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        <h1>Tin</h1>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#showcase" class="nav-link">Technical Showcase</a>
+        <a href="#tos" class="nav-link">Terms</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <header id="home" class="hero" tabindex="-1">
+      <div class="eyebrow">Roblox | Systems & Gameplay</div>
+      <h2>Tin</h2>
+      <p class="lead">I'm <strong>Tin</strong>, a Roblox developer with 5+ years of scripting experience. I write scalable, clean, documented, modular code and love solving complex problems in Lua.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="#projects">View Highlighted Work</a>
+        <a class="btn secondary" href="#contact">Get a Quote</a>
+      </div>
     </header>
 
-    <section id="stats">
-        <h2>Experience & Impact</h2>
-        <p class="section-desc">Key metrics showcasing my journey and contributions in the Roblox community.</p>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h3>Years of Experience</h3>
-                <p class="stat-number">5+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Contributed Visits</h3>
-                <p class="stat-number">100M+</p>
-            </div>
-            <div class="stat-card">
-                <h3>Personal Visits</h3>
-                <p class="stat-number">4M+</p>
-            </div>
-        </div>
+    <!-- ABOUT -->
+    <section id="about" aria-labelledby="about-title">
+  <div class="section-header">
+    <h3 id="about-title">About Me</h3>
+    <p class="lead-mini">Lua scripting • Performance & optimization • Systems design</p>
+  </div>
+
+  <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 0 auto;">
+    I’ve been part of the Roblox platform for over <span style="color:#ff4c4c;">5 years</span>, diving deep into its unique ecosystem and community. With more than <span style="color:#ff4c4c;">5 years of dedicated scripting experience</span>, I specialize in creating scalable, maintainable game systems and responsive UI that enhance player engagement and overall experience.
+  </p>
+
+  <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+    My passion lies in building <span style="color:#ff4c4c;">robust gameplay mechanics</span>, optimizing <span style="color:#ff4c4c;">multiplayer performance</span>, and designing <span style="color:#ff4c4c;">intuitive user interfaces</span> that keep players coming back. Over the years, I’ve worked on a variety of projects ranging from <span style="color:#ff4c4c;">competitive multiplayer games</span> to <span style="color:#ff4c4c;">immersive storytelling experiences</span>, always focusing on clean, efficient code and smooth user interactions.
+  </p>
+
+  <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+    I believe great game development is a blend of <span style="color:#ff4c4c;">creativity</span> and <span style="color:#ff4c4c;">technical excellence</span>, and I strive to deliver both. Whether collaborating with teams or working solo, I prioritize clear <span style="color:#ff4c4c;">communication</span> and <span style="color:#ff4c4c;">adaptability</span> to meet project goals and exceed expectations.
+  </p>
+
+  <p style="text-align:center; color:#eaeaea; max-width:900px; margin: 1em auto;">
+    If you’re looking for a developer who understands the intricacies of Roblox’s engine and can bring your ideas to life with <span style="color:#ff4c4c;">polish</span> and <span style="color:#ff4c4c;">precision</span>, I’m here to help.
+  </p>
+
     </section>
 
-    <section id="games">
-        <h2>Games</h2>
-        <p class="section-desc">Here are some of the games I’ve contributed to. Click through to explore each title.</p>
-        <div class="games-grid">
-            <!-- Game cards will be injected here -->
-        </div>
+    <!-- PROJECTS (featured first) -->
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-header">
+        <h3 id="projects-title">Projects</h3>
+        <p class="lead-mini">Selected work emphasizing systems design and multiplayer reliability.</p>
+      </div>
+
+      <div class="projects grid" role="list">
+
+        <!-- FEATURED: biggest project (large & eye-catching) -->
+        <article class="featured-card" role="listitem" aria-label="Featured project">
+          <div class="featured-media" id="featuredMedia">
+            <!-- Placeholder for featured media -->
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;background:#000;">
+              Featured Project Media
+            </div>
+          </div>
+
+          <div class="featured-body">
+            <div>
+              <div class="featured-role">Lead Scripter</div>
+            </div>
+            <h2 class="featured-title">My Biggest Project</h2>
+            <p class="featured-desc">This is my featured project, showcasing advanced scripting and gameplay systems.</p>
+
+            <div class="featured-cta">
+              <a class="btn" href="#contact">Contact Me</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Other smaller projects -->
+        <article class="card" role="listitem" aria-label="Game One project">
+          <div class="thumb">
+            <img src="https://via.placeholder.com/300x150" alt="Game One thumbnail" />
+          </div>
+          <div>
+              <div class="featured-role">Lead Scripter</div>
+          </div>
+          <h4>Game One</h4>
+          <p class="desc">A fun adventure game I helped build.</p>
+          <div class="actions">
+            <a class="btn" href="#" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+        <article class="card" role="listitem" aria-label="Game Two project">
+          <div class="thumb">
+            <img src="https://via.placeholder.com/300x150" alt="Game Two thumbnail" />
+          </div>
+          <div>
+              <div class="featured-role">Scripter</div>
+          </div>
+          <h4>Game Two</h4>
+          <p class="desc">Another project showcasing scripting skills.</p>
+          <div class="actions">
+            <a class="btn" href="#" target="_blank" rel="noopener">Play</a>
+            <a class="btn secondary" href="#contact">Contact Me</a>
+          </div>
+        </article>
+
+      </div> <!-- end projects grid -->
     </section>
 
-    <section id="videos">
-        <h2>Video Demos</h2>
-        <p class="section-desc">Examples of systems and features I’ve built—watch to see the scripting in action.</p>
-        <div class="videos-grid">
-            <!-- Video cards will be injected here -->
-        </div>
+    <!-- TECHNICAL SHOWCASE -->
+    <section id="showcase" aria-labelledby="showcase-title">
+  <div class="section-header">
+    <h3 id="showcase-title">Technical Showcase</h3>
+    <p class="lead-mini">Short clips demonstrating systems, tools, and prototypes I built.</p>
+  </div>
+
+  <div class="showcase-wrapper" role="list">
+    <div class="clip" role="listitem">
+      <video controls preload="metadata" playsinline>
+        <source src="demos/pathfinding.mp4" />
+        Your browser cannot play this video.
+      </video>
+      <h4>Pathfinding System Demo</h4>
+      <p>Shows the custom pathfinding logic and AI behavior.</p>
+    </div>
+
+    <div class="clip" role="listitem">
+      <video controls preload="metadata" playsinline>
+        <source src="demos/inventory.mp4" />
+        Your browser cannot play this video.
+      </video>
+      <h4>Inventory & UI</h4>
+      <p>Clean modular inventory system with hotkeys.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- TERMS -->
+    <section id="tos" aria-labelledby="tos-title">
+      <div class="section-header">
+        <h3 id="tos-title">Terms of Service</h3>
+        <p class="lead-mini">Simple and clear terms to keep projects predictable and fair.</p>
+      </div>
+
+      <div style="max-width:840px;margin:0 auto;color:var(--muted);">
+        <ul style="line-height:1.8; padding-left:1rem;">
+          <li><strong>No refunds</strong> after work has started or deliverables have been handed over.</li>
+          <li><strong>Payment</strong> is negotiated directly and depends on project scope and timeline.</li>
+          <li>Clear, written requirements are required before work begins.</li>
+          <li>I reserve the right to decline work that conflicts with my values or expertise.</li>
+          <li>Delivery timelines are estimated per-project and will be included in the agreement.</li>
+        </ul>
+      </div>
     </section>
 
-    <section id="socials">
-        <h2>Connect with me</h2>
-        <div class="socials">
-            <a href="https://www.roblox.com/users/1795023834/profile" target="_blank" class="social-button">
-                <img src="icons/roblox.png" alt="Roblox">
-            </a>
-            <a href="https://twitter.com/lV0rdL" target="_blank" class="social-button">
-                <img src="icons/twitter.png" alt="Twitter">
-            </a>
-            <a href="https://github.com/lV0rd" target="_blank" class="social-button">
-                <img src="icons/github.png" alt="GitHub">
-            </a>
-        </div>
+    <!-- REVIEWS -->
+    <section id="reviews" aria-labelledby="reviews-title">
+      <div class="section-header">
+        <h3 id="reviews-title">Reviews</h3>
+        <p class="lead-mini">Client feedback and screenshots from completed work.</p>
+      </div>
+
+            <!-- Placeholder reviews -->
+      <div class="review-card" role="region" aria-label="Client review">
+        <img src="reviews/review1.png" alt="Client review" />
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-header">
+        <h3 id="contact-title">Contact</h3>
+        <p class="lead-mini">Available for freelance and team work. Payment and scope negotiated per-project.</p>
+      </div>
+
+      <div class="contact-grid" style="margin-top:0.6rem;">
+        <a href="https://www.roblox.com/users/1795023834/profile" target="_blank" rel="noopener">
+          <img src="icons/roblox.png" alt="Roblox profile" />
+        </a>
+        <a href="https://twitter.com/lV0rdL" target="_blank" rel="noopener">
+          <img src="icons/twitter.png" alt="Twitter" />
+        </a>
+        <a href="https://github.com/lV0rd" target="_blank" rel="noopener">
+          <img src="icons/github.png" alt="GitHub" />
+        </a>
+      </div>
     </section>
 
     <footer>
-        <p>© <span id="year"></span> Tin</p>
+      <div>&copy; 2025 Tin — Roblox Developer</div>
     </footer>
+  </main>
 
-    <script src="script.js"></script>
+  <script>
+(function(){
+  function init(){
+    // Smooth scroll + active nav
+    const links = document.querySelectorAll('.nav-link');
+    const sections = Array.from(document.querySelectorAll('main section, header.hero'));
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting){
+          const id = ent.target.id;
+          links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
+        }
+      });
+    }, { root: null, rootMargin: '0px 0px -40% 0px', threshold: 0.22 });
+    sections.forEach(s => io.observe(s));
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({ behavior:'smooth', block:'start' });
+          setTimeout(()=> { try { target.focus({preventScroll:true}); } catch(e){} }, 600);
+        }
+      });
+    });
+    // Fade-in on load
+    const elems = document.querySelectorAll('header.hero, section');
+    elems.forEach((el,i) => setTimeout(()=> el.classList.add('visible'), 100*i));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
 </body>
 </html>
