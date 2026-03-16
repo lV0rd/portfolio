@@ -1,0 +1,106 @@
+{
+  "personal": {
+    "name": "Tin",
+    "title": "Roblox Developer",
+    "description": "I'm Tin, a Roblox developer with 5+ years of scripting experience. I write scalable, clean, documented, modular code and love solving complex problems in Lua.",
+    "eyebrow": "Roblox | Systems & Gameplay For Cheap",
+    "bio": [
+      "I've been part of the Roblox platform for over 5 years, diving deep into its unique ecosystem and community. With more than 5 years of dedicated scripting experience, I specialize in creating scalable, maintainable game systems and responsive UI that enhance player engagement and overall experience.",
+      "My passion lies in building robust gameplay mechanics, optimizing multiplayer performance, and designing intuitive user interfaces that keep players coming back. Over the years, I've worked on a variety of projects ranging from competitive multiplayer games to immersive storytelling experiences, always focusing on clean, efficient code and smooth user interactions.",
+      "I believe great game development is a blend of creativity and technical excellence, and I strive to deliver both. Whether collaborating with teams or working solo, I prioritize clear communication and adaptability to meet project goals and exceed expectations.",
+      "If you're looking for a developer who understands the intricacies of Roblox's engine and can bring your ideas to life with polish and precision, I'm here to help."
+    ],
+    "skills": "Lua scripting • Performance & optimization • Systems design",
+    "social": {
+      "roblox": {
+        "url": "https://www.roblox.com/users/1795023834/profile",
+        "icon": "assets/images/icons/roblox.png"
+      },
+      "twitter": {
+        "url": "https://twitter.com/lV0rdL",
+        "icon": "assets/images/icons/twitter.png"
+      },
+      "github": {
+        "url": "https://github.com/lV0rd",
+        "icon": "assets/images/icons/github.png"
+      }
+    }
+  },
+  "projects": {
+    "description": "Selected work emphasizing systems design and multiplayer reliability.",
+    "featured": {
+      "title": "My Biggest Project",
+      "role": "Lead Scripter",
+      "description": "This is my featured project, showcasing advanced scripting and gameplay systems.",
+      "media": null,
+      "cta": "Contact Me"
+    },
+    "list": [
+      {
+        "title": "Adopt Me!",
+        "role": "Lead Scripter",
+        "description": "Popular pet adoption game with millions of players.",
+        "image": "https://via.placeholder.com/300x150",
+        "playUrl": "https://www.roblox.com/games/920587237/Adopt-Me",
+        "contactUrl": "#contact"
+      },
+      {
+        "title": "Brookhaven",
+        "role": "Scripter",
+        "description": "RP game with custom homes and social features.",
+        "image": "https://via.placeholder.com/300x150",
+        "playUrl": "https://www.roblox.com/games/4924922222/Brookhaven",
+        "contactUrl": "#contact"
+      }
+    ]
+  },
+  "showcase": {
+    "description": "Short clips demonstrating systems, tools, and prototypes I built.",
+    "videos": [
+      {
+        "title": "Pathfinding System Demo",
+        "description": "Shows the custom pathfinding logic and AI behavior.",
+        "src": "assets/videos/demos/pathfinding.mp4"
+      },
+      {
+        "title": "Inventory & UI",
+        "description": "Clean modular inventory system with hotkeys.",
+        "src": "assets/videos/demos/inventory.mp4"
+      }
+    ]
+  },
+  "terms": {
+    "description": "Simple and clear terms to keep projects predictable and fair.",
+    "items": [
+      "No refunds after work has started or deliverables have been handed over.",
+      "Payment is negotiated directly and depends on project scope and timeline.",
+      "Clear, written requirements are required before work begins.",
+      "I reserve the right to decline work that conflicts with my values or expertise.",
+      "Delivery timelines are estimated per-project and will be included in the agreement."
+    ]
+  },
+  "reviews": {
+    "description": "Client feedback and screenshots from completed work.",
+    "images": [
+      "assets/images/reviews/review1.png"
+    ]
+  },
+  "contact": {
+    "description": "Available for freelance and team work. Payment and scope negotiated per-project."
+  },
+  "theme": {
+    "colors": {
+      "bg1": "#0a0a0f",
+      "bg2": "#1a1a2e",
+      "card": "#16213e",
+      "muted": "#a0a0a0",
+      "accent": "#00d4ff",
+      "accent2": "#0099cc",
+      "glass": "rgba(26,26,46,0.8)"
+    },
+    "maxWidth": "1200px",
+    "radius": "16px",
+    "gap": "2rem",
+    "navHeight": "70px"
+  }
+}
