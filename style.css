@@ -1,5 +1,8 @@
 /* Basic resets */
 *{box-sizing:border-box}
+html{
+  scroll-padding-top: 80px;
+}
 html,body{height:100%}
 body{
   margin:0;
@@ -188,12 +191,9 @@ nav{
 main{ 
   max-width: var(--max-width); 
   margin: 0 auto; 
-  padding: 4rem 2rem 8rem; 
+  padding: 2rem 2rem 2rem; 
   position: relative;
   z-index: 10;
-  padding: 6rem 0 8rem;
-  margin-bottom: 4rem;
-  position: relative;
   overflow: hidden;
 }
 header.hero::before {
@@ -295,8 +295,8 @@ header p.lead{
 
 /* Sections */
 section{ 
-  margin: 6rem 0; 
-  padding: 4rem; 
+  margin: 1.5rem 0; 
+  padding: 2.5rem; 
   border-radius: var(--radius); 
   background: linear-gradient(135deg, var(--card) 0%, rgba(22, 33, 62, 0.8) 100%);
   border: 1px solid rgba(0, 212, 255, 0.1);
@@ -658,9 +658,9 @@ footer{
   text-align:center;
   color: var(--muted);
   font-size:1rem;
-  margin-top:6rem;
+  margin-top:1rem;
   opacity:0.8;
-  padding: 2rem 0;
+  padding: 1rem 0;
   border-top: 1px solid rgba(0, 212, 255, 0.1);
 }
 
@@ -741,7 +741,7 @@ section {
   .featured-card{ flex-direction:column; gap: 2rem; }
   .featured-media{ height: 300px; min-height:250px; }
   header h2{ font-size:2.8rem; }
-  section{ padding: 3rem 2rem; }
+  section{ padding: 2rem 2rem; }
 }
 
 @media (max-width:768px){
@@ -753,10 +753,11 @@ section {
   .nav-links{ display:none; }
   .showcase-wrapper{ grid-template-columns: 1fr; }
   .clip video{ height: 200px; }
-  main{ padding: 3rem 1rem 6rem; }
+  main{ padding: 1.5rem 1rem 1.5rem; }
 }
 
 @media (max-width:480px){
+
   header{ padding: 4rem 0 6rem; }
   header h2{ font-size:1.8rem; }
   .featured-title{ font-size: 2rem; }
@@ -764,9 +765,9 @@ section {
   .clip{ padding: 1.5rem; }
   .contact-grid a img{ width: 60px; height: 60px; }
 }
-}
+
 .game-card a:hover {
-    color: var(--accent-color);
+    color: var(--accent);
 }
 
 
@@ -828,12 +829,6 @@ section h2 {
 }
 
 /* spacing between major sections */
-section {
-    margin: 40px 0;
-    padding: 20px;
-    border-radius: 12px;
-    background: var(--glass);
-}
 
 .game-card {
     background: var(--card);
@@ -940,7 +935,7 @@ footer {
 .stat-number {
     font-size: 2.5rem;
     font-weight: bold;
-    color: var(--accent-color);
+    color: var(--accent);
     margin: 0;
     line-height: 1;
 }

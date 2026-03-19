@@ -36,29 +36,10 @@ function populateProjects(config) {
 
     projectsDesc.textContent = config.projects.description;
 
-    // Function to extract universe ID from Roblox URL
-    function extractUniverseId(robloxUrl) {
-        const match = robloxUrl.match(/\/games\/(\d+)\//);
-        return match ? match[1] : null;
-    }
-
-    // Function to fetch Roblox thumbnail
-    async function fetchRobloxThumbnail(universeId) {
-        try {
-            const response = await fetch(`https://thumbnails.roblox.com/v1/games/multiget/thumbnails?universeIds=${universeId}&countPerUniverse=1&defaults=true&size=768x432&format=Png&isCircular=false`);
-            const data = await response.json();
-            return data.data[0]?.thumbnails[0]?.imageUrl || 'https://via.placeholder.com/300x150';
-        } catch (error) {
-            console.error('Failed to fetch Roblox thumbnail:', error);
-            return 'https://via.placeholder.com/300x150';
-        }
-    }
-
     // Regular projects
-    const loadProjects = async () => {
-        const projectsHTML = await Promise.all(config.projects.list.map(async (project) => {
-            const universeId = extractUniverseId(project.playUrl);
-            const thumbnailUrl = universeId ? await fetchRobloxThumbnail(universeId) : project.image;
+    const loadProjects = () => {
+        const projectsHTML = config.projects.list.map((project) => {
+            const thumbnailUrl = project.image || 'https://via.placeholder.com/300x150/00d4ff/ffffff?text=Game';
 
             return `
                 <article class="card" role="listitem" aria-label="${project.title} project">
@@ -74,7 +55,7 @@ function populateProjects(config) {
                     </div>
                 </article>
             `;
-        }));
+        });
 
         projectsGrid.innerHTML = projectsHTML.join('');
     };
@@ -165,31 +146,31 @@ function applyTheme(config) {
 }
 
 function initNavigation() {
-    // Smooth scroll + active nav
     const links = document.querySelectorAll('.nav-link');
     const sections = Array.from(document.querySelectorAll('main section, header.hero'));
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(ent => {
-            if (ent.isIntersecting) {
-                const id = ent.target.id;
-                links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    
+    function updateActiveLink() {
+        const navHeight = 70;
+        const scrollPos = window.scrollY + navHeight + 100;
+        
+        let activeSection = sections[0];
+        
+        for (let section of sections) {
+            if (section.offsetTop <= scrollPos) {
+                activeSection = section;
+            } else {
+                break;
             }
+        }
+        
+        links.forEach(link => {
+            const href = link.getAttribute('href');
+            link.classList.toggle('active', href === '#' + activeSection.id);
         });
-    }, { root: null, rootMargin: '0px 0px -40% 0px', threshold: 0.22 });
-    sections.forEach(s => io.observe(s));
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', function(e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                setTimeout(() => {
-                    try { target.focus({ preventScroll: true }); } catch (e) { }
-                }, 600);
-            }
-        });
-    });
+    }
+    
+    window.addEventListener('scroll', updateActiveLink, { passive: true });
+    updateActiveLink();
 }
 
 function initFadeIn() {
