@@ -39,10 +39,18 @@
       {
         "title": "CRAZY Slap Tower",
         "role": "Creator",
-        "description": "Personal project of mine, made in a day.",
+        "description": "Personal project of mine, made in a day with a friend.",
         "playUrl": "https://www.roblox.com/games/133346834577460/CRAZY-Slap-Tower",
         "contactUrl": "#contact",
         "image": "assets/images/projects/slap-tower.png"
+      },
+      {
+        "title": "Escape The Lava Tsunami",
+        "role": "CO-Creator",
+        "description": "A game that I made with my friend @fontwho. Sold.",
+        "playUrl": "https://www.roblox.com/games/17558591568/Escape-The-Lava-Tsunamir",
+        "contactUrl": "#contact",
+        "image": "assets/images/projects/escape-lava.png"
       }
     ]
   },
