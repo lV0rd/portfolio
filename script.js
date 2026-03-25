@@ -2,11 +2,25 @@
 async function loadConfig() {
     try {
         const response = await fetch('config.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}: config.json not found`);
         const config = await response.json();
         return config;
     } catch (error) {
-        console.error('Failed to load config:', error);
+        console.error('Failed to load config:', error.message);
         return null;
+    }
+}
+
+async function loadVideos() {
+    try {
+        const response = await fetch('videos.json');
+        if (!response.ok) throw new Error(`HTTP ${response.status}: videos.json not found`);
+        const videos = await response.json();
+        console.log('Loaded videos:', videos);
+        return videos;
+    } catch (error) {
+        console.error('Failed to load videos:', error.message);
+        return [];
     }
 }
 
@@ -36,7 +50,6 @@ function populateProjects(config) {
 
     projectsDesc.textContent = config.projects.description;
 
-    // Regular projects
     const loadProjects = () => {
         const projectsHTML = config.projects.list.map((project) => {
             const thumbnailUrl = project.image || 'https://via.placeholder.com/300x150/00d4ff/ffffff?text=Game';
@@ -63,22 +76,39 @@ function populateProjects(config) {
     loadProjects();
 }
 
-function populateShowcase(config) {
+function populateShowcase(config, videos) {
     const showcaseWrapper = document.getElementById('showcase-wrapper');
     const showcaseDesc = document.getElementById('showcase-description');
 
+    if (!showcaseWrapper) {
+        console.error('showcase-wrapper element not found in HTML');
+        return;
+    }
+
     showcaseDesc.textContent = config.showcase.description;
 
-    const videosHTML = config.showcase.videos.map(video => `
-        <div class="clip" role="listitem">
-            <video controls preload="metadata" playsinline>
-                <source src="${video.src}" />
-                Your browser cannot play this video.
-            </video>
-            <h4>${video.title}</h4>
-            <p>${video.description}</p>
-        </div>
-    `).join('');
+    if (!videos || videos.length === 0) {
+        showcaseWrapper.innerHTML = '<p style="color:var(--muted);text-align:center;">No videos to display.</p>';
+        return;
+    }
+
+    const videosHTML = videos.map(video => {
+        // Infer MIME type from file extension
+        const ext = video.src.split('.').pop().toLowerCase();
+        const mimeTypes = { mp4: 'video/mp4', webm: 'video/webm', ogg: 'video/ogg' };
+        const mimeType = mimeTypes[ext] || 'video/mp4';
+
+        return `
+            <div class="clip" role="listitem">
+                <video controls preload="metadata" playsinline>
+                    <source src="${video.src}" type="${mimeType}" />
+                    Your browser cannot play this video.
+                </video>
+                <h4>${video.title}</h4>
+                <p>${video.description}</p>
+            </div>
+        `;
+    }).join('');
 
     showcaseWrapper.innerHTML = videosHTML;
 }
@@ -148,13 +178,13 @@ function applyTheme(config) {
 function initNavigation() {
     const links = document.querySelectorAll('.nav-link');
     const sections = Array.from(document.querySelectorAll('main section, header.hero'));
-    
+
     function updateActiveLink() {
         const navHeight = 70;
         const scrollPos = window.scrollY + navHeight + 100;
-        
+
         let activeSection = sections[0];
-        
+
         for (let section of sections) {
             if (section.offsetTop <= scrollPos) {
                 activeSection = section;
@@ -162,19 +192,18 @@ function initNavigation() {
                 break;
             }
         }
-        
+
         links.forEach(link => {
             const href = link.getAttribute('href');
             link.classList.toggle('active', href === '#' + activeSection.id);
         });
     }
-    
+
     window.addEventListener('scroll', updateActiveLink, { passive: true });
     updateActiveLink();
 }
 
 function initFadeIn() {
-    // Fade-in on load
     const elems = document.querySelectorAll('header.hero, section');
     elems.forEach((el, i) => setTimeout(() => el.classList.add('visible'), 100 * i));
 }
@@ -194,7 +223,6 @@ function initParticleConnections() {
     particlesContainer.appendChild(svg);
 
     function updateConnections() {
-        // Clear existing lines
         while (svg.firstChild) {
             svg.removeChild(svg.firstChild);
         }
@@ -208,14 +236,13 @@ function initParticleConnections() {
             };
         });
 
-        // Draw lines between close particles
         for (let i = 0; i < particlePositions.length; i++) {
             for (let j = i + 1; j < particlePositions.length; j++) {
                 const p1 = particlePositions[i];
                 const p2 = particlePositions[j];
                 const distance = Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
 
-                if (distance < 250) { // Connection distance threshold
+                if (distance < 250) {
                     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
                     line.setAttribute('x1', p1.x);
                     line.setAttribute('y1', p1.y);
@@ -230,32 +257,27 @@ function initParticleConnections() {
         }
     }
 
-    // Update connections initially and on scroll/resize
     updateConnections();
     window.addEventListener('scroll', updateConnections);
     window.addEventListener('resize', updateConnections);
-
-    // Update periodically for smooth animation
     setInterval(updateConnections, 100);
 }
 
 async function init() {
     const config = await loadConfig();
+    const videos = await loadVideos();
     if (!config) return;
 
-    // Apply theme first
     applyTheme(config);
 
-    // Populate all sections
     populateHero(config);
     populateAbout(config);
     populateProjects(config);
-    populateShowcase(config);
+    populateShowcase(config, videos);
     populateTerms(config);
     populateReviews(config);
     populateContact(config);
 
-    // Initialize interactions
     initNavigation();
     initFadeIn();
     initParticleConnections();

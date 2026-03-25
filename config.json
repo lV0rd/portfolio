@@ -45,6 +45,22 @@
         "image": "assets/images/projects/slap-tower.png"
       },
       {
+        "title": "Save Brainrots From Worm!",
+        "role": "CO-Creator",
+        "description": "Another project, made with a friend.",
+        "playUrl": "https://www.roblox.com/games/90117114620715/Save-Brainrots-From-Worm",
+        "contactUrl": "#contact",
+        "image": "assets/images/projects/worm-brainrots.png"
+      },
+      {
+        "title": "+1 Speed Tidal Wave Escape!",
+        "role": "Creator",
+        "description": "Something I made for myself in a few hours.",
+        "playUrl": "https://www.roblox.com/games/116558106901021/1-Speed-Tidal-Wave-Escape",
+        "contactUrl": "#contact",
+        "image": "assets/images/projects/speed-escape.png"
+      },
+      {
         "title": "Escape The Lava Tsunami",
         "role": "CO-Creator",
         "description": "A game that I made with my friend @fontwho. Sold.",
@@ -58,9 +74,39 @@
     "description": "Short clips demonstrating systems, tools, and prototypes I built.",
     "videos": [
       {
-        "title": "Pathfinding System Demo",
-        "description": "Shows the custom pathfinding logic and AI behavior.",
-        "src": "assets/videos/demos/pathfinding.mp4"
+        "title": "Pick a Side",
+        "description": "A template-like project, for the pick a side genre.",
+        "src": "assets/videos/better-brainrot.mp4"
+      },
+      {
+        "title": "Basic Difficulty Chart Obby System",
+        "description": "A very barebones template for a difficulty chart obby.",
+        "src": "assets/videos/basic-obby.mp4"
+      },
+      {
+        "title": "Queue System",
+        "description": "A very basic lobby queue system. Easily configurable for different game modes and player counts.",
+        "src": "assets/videos/basic-queue.mp4"
+      },
+      {
+        "title": "C4 System",
+        "description": "A simple throwable C4. Made for my friend.",
+        "src": "assets/videos/C4-system.mp4"
+      },
+      {
+        "title": "Raycasting Engine",
+        "description": "A thing I made for fun.",
+        "src": "assets/videos/raycast-engine.mp4"
+      },
+      {
+        "title": "Projectile System",
+        "description": "A smooth client synced projectile system for roblox.",
+        "src": "assets/videos/smooth-projectile-system.mp4"
+      },
+      {
+        "title": "Tower of Hell Remake",
+        "description": "A remake of the popular Tower of Hell game.",
+        "src": "assets/videos/tower-of-hell-remake.mp4"
       }
     ]
   },
@@ -77,7 +123,7 @@
   "reviews": {
     "description": "Client feedback and screenshots from completed work.",
     "images": [
-      "assets/images/reviews/review1.png"
+      "assets/images/reviews/tin_reivew.png"
     ]
   },
   "contact": {

@@ -1,12 +1,45 @@
 [
+
     {
-        "title": "Pathfinding System Demo",
-        "description": "Shows the custom pathfinding logic and AI behavior.",
-        "src": "demos/pathfinding.mp4"
+        "title": "Pick a Side",
+        "description": "A template-like project, for the pick a side genre.",
+        "src": "assets/videos/better-brainrot.mp4"
     },
+
     {
-        "title": "Inventory & UI",
-        "description": "Clean modular inventory system with hotkeys.",
-        "src": "demos/inventory.mp4"
+        "title": "Basic Difficulty Chart Obby System",
+        "description": "A very barebones template for a difficulty chart obby.",
+        "src": "assets/videos/basic-obby.mp4"
+    },
+
+    {
+        "title": "Queue System",
+        "description": "A very basic lobby queue system. Easily configurable for different game modes and player counts.",
+        "src": "assets/videos/basic-queue.mp4"
+    },
+
+    {
+        "title": "C4 System",
+        "description": "A simple throwable C4. Made for my friend.",
+        "src": "assets/videos/C4-system.mp4"
+    },
+
+    {
+        "title": "Raycasting Engine",
+        "description": "A thing I made for fun.",
+        "src": "assets/videos/raycast-engine.mp4"
+    },
+
+    {
+        "title": "Projectile System",
+        "description": "A smooth client synced projectile system for roblox.",
+        "src": "assets/videos/smooth-projectile-system.mp4"
+    },
+
+    {
+        "title": "Tower of Hell Remake",
+        "description": "A remake of the popular Tower of Hell game.",
+        "src": "assets/videos/tower-of-hell-remake.mp4"
     }
+
 ]

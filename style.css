@@ -640,8 +640,8 @@ section p.lead-mini{
   margin-top:2rem; 
 }
 .contact-grid a img{ 
-  width:70px; 
-  height:70px; 
+  width:50px; 
+  height:50px; 
   border-radius:50%; 
   object-fit:cover; 
   display:block; 
@@ -939,3 +939,5 @@ footer {
     margin: 0;
     line-height: 1;
 }
+
+
