@@ -2,15 +2,15 @@
   "personal": {
     "name": "Tin",
     "title": "Roblox Developer",
-    "description": "I'm Tin, a Roblox developer with 5+ years of scripting experience. I write scalable, clean, documented, modular code and love solving complex problems in Lua.",
+    "description": "I'm Tin, an Algerian Roblox developer with 5+ years of scripting experience. I write scalable, clean, documented, modular code and love solving complex problems in Luau.",
     "eyebrow": "Roblox | Systems & Gameplay For Cheap",
     "bio": [
       "I’ve been on Roblox for over 5 years, and during that time I’ve spent a lot of it scripting and building games. I focus on making systems that are clean, scalable, and actually enjoyable for players to interact with, especially when it comes to UI and multiplayer features.",
-      "I like working on gameplay mechanics and making sure everything feels smooth and responsive. Most of my experience comes from building different types of projects, from competitive games to more story-driven ones, and I always try to keep my code organized and efficient.",
+      "I like working on gameplay mechanics and making sure everything feels smooth and responsive. Most of my experience comes from building different types of projects, from competitive games to social hangout spaces, and I always try to keep my code organized and efficient.",
       "When I work on a project, I try to keep things simple, communicate clearly, and adapt to whatever the game needs. At the end of the day, I just enjoy turning ideas into something that feels polished and fun to play.",
       "If you need someone who understands how Roblox works and can build things properly without overcomplicating them, I’m down to help."
     ],
-    "skills": "Lua scripting • Performance & optimization • Systems design",
+    "skills": "Luau scripting • Performance & optimization • Systems design",
     "social": {
       "roblox": {
         "url": "https://www.roblox.com/users/1795023834/profile",
@@ -23,6 +23,10 @@
       "github": {
         "url": "https://github.com/lV0rd",
         "icon": "assets/images/icons/github.png"
+      },
+      "discord": {
+        "url": "https://discord.com/users/1236070873442684980",
+        "icon": "assets/images/icons/discord.png"
       }
     }
   },
@@ -39,7 +43,7 @@
       {
         "title": "CRAZY Slap Tower",
         "role": "Creator",
-        "description": "Personal project of mine, made in a day with a friend.",
+        "description": "A personal project of mine, made in a day with a friend.",
         "playUrl": "https://www.roblox.com/games/133346834577460/CRAZY-Slap-Tower",
         "contactUrl": "#contact",
         "image": "assets/images/projects/slap-tower.png"
@@ -55,7 +59,7 @@
       {
         "title": "+1 Speed Tidal Wave Escape!",
         "role": "Creator",
-        "description": "Something I made for myself in a few hours.",
+        "description": "A short project I made for myself in just a few hours.",
         "playUrl": "https://www.roblox.com/games/116558106901021/1-Speed-Tidal-Wave-Escape",
         "contactUrl": "#contact",
         "image": "assets/images/projects/speed-escape.png"
@@ -63,7 +67,7 @@
       {
         "title": "Escape The Lava Tsunami",
         "role": "CO-Creator",
-        "description": "A game that I made with my friend @fontwho. Sold.",
+        "description": "A game I worked on with @fontwho. Later sold.",
         "playUrl": "https://www.roblox.com/games/17558591568/Escape-The-Lava-Tsunamir",
         "contactUrl": "#contact",
         "image": "assets/images/projects/escape-lava.png"
@@ -123,11 +127,11 @@
   "reviews": {
     "description": "Client feedback and screenshots from completed work.",
     "images": [
-      "assets/images/reviews/tin_reivew.png"
+      "assets/images/reviews/capsori-review.png"
     ]
   },
   "contact": {
-    "description": "Available for freelance and team work. Payment and scope negotiated per-project."
+    "description": "Open for freelance and team opportunities. Pricing and scope are discussed per project."
   },
   "theme": {
     "colors": {
